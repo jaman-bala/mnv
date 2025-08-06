@@ -1,4 +1,4 @@
-module mnv
+module github.com/jaman-bala/mnv
 
 go 1.24.2
 
