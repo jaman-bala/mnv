@@ -67,7 +67,7 @@ github.com/jaman-bala/mnv/
 ### 1. Установка
 
 ```bash
-go get github.com/jaman-bala/mnv
+go get github.com/jaman-bala/mnv@v1.0.1
 ```
 
 ### 2. Базовое использование
@@ -104,7 +104,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
-	"github.com/jaman-bala/mnv"
+    "github.com/jaman-bala/mnv/pkg/mnv"
 )
 
 type User struct {
@@ -116,7 +116,10 @@ type User struct {
 func main() {
 	// Регистрируем валидаторы
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
-		mnv.RegisterValidators(v)
+		err := mnv.RegisterValidators(v)
+		if err != nil {
+			return nil
+		}
 	}
 
 	r := gin.Default()
