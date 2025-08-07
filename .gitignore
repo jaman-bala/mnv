@@ -1,24 +1,32 @@
-# Игнорировать бинарные файлы и директории
-/bin/
-/out/
+# Binaries for programs and plugins
 *.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
 *.test
 
-# Игнорировать кэш Go и vendor
-/vendor/
+# Output of the go coverage tool
+*.out
 
+# Dependency directories
+vendor/
 
-# Игнорировать файлы IDE (VSCode, GoLand и др.)
-.idea/
+# Go workspace file
+go.work
+
+# IDE files
 .vscode/
+.idea/
 *.swp
 *.swo
-*.~
 
-# Игнорировать локальные конфиги
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local environment files
 .env
-*.local
-
-# Игнорировать логи и временные файлы
-*.log
-*.tmp
+.env.local
