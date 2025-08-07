@@ -127,10 +127,11 @@ func suggestCorrections(phone, countryCode string) []string {
 
 	// Пробуем определить страну по длине и добавить соответствующий префикс
 	digitsOnly := extractDigitsOnly(phone)
-	for code, info := range CountryPhoneCodes {
+	for _, info := range CountryPhoneCodes {
 		if len(digitsOnly) >= info.MinLength && len(digitsOnly) <= info.MaxLength {
-			suggestion := info.Prefix + digitsOnly
-			// Избегаем дублирования
+			// Убираем уже возможный дублирующий префикс перед добавлением нового
+			trimmed := strings.TrimPrefix(phone, info.Prefix)
+			suggestion := info.Prefix + extractDigitsOnly(trimmed)
 			if !contains(suggestions, suggestion) {
 				suggestions = append(suggestions, suggestion)
 			}
@@ -157,7 +158,7 @@ func contains(slice []string, item string) bool {
 
 // formatPhoneNumber форматирует номер телефона согласно стандартам страны
 func formatPhoneNumber(phone, countryCode string) (string, error) {
-	info, exists := GetCountryInfo(countryCode)
+	_, exists := GetCountryInfo(countryCode)
 	if !exists {
 		return "", &ValidationError{
 			Type:    ErrorTypeUnsupportedCountry,

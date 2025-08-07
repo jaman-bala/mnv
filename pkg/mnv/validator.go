@@ -94,7 +94,6 @@ func validatePhoneForCountry(phone, countryCode string) bool {
 
 // ValidatePhone выполняет полную валидацию номера телефона с детальными результатами
 func ValidatePhone(phone, countryCode string, options ...*ValidationOptions) *ValidationResult {
-	startTime := time.Now()
 
 	result := &ValidationResult{
 		OriginalNumber: phone,
