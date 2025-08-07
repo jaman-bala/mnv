@@ -114,6 +114,7 @@ type User struct {
 }
 
 func main() {
+
 	// Регистрируем валидаторы
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 		err := mnv.RegisterValidators(v)
